@@ -108,7 +108,7 @@ namespace ChinookMediaManager.Infrastructure
         }
         protected override void  ConfigureServiceLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => Container.GetInstance<IServiceLocator>());
+            // Service Locator configured in ConfigureContainer()
         }
 
         /// <summary>

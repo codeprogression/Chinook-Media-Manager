@@ -29,23 +29,14 @@ namespace ChinookMediaManager.Infrastructure
         {
             _useDefaultConfiguration = runWithDefaultConfiguration;
 
-            var logger = LoggerFacade;
-            if (logger == null) throw new InvalidOperationException("NullLoggerException");
-
-            logger.Log("Creating StructureMap container", Category.Debug, Priority.Low);
-            
             Container = CreateContainer();
             if (Container == null) throw new InvalidOperationException("NullContainerException");
-
-            logger.Log("Configuring container", Category.Debug, Priority.Low);
+            
             ConfigureContainer();
-
-            logger.Log("Configuring region adapters", Category.Debug, Priority.Low);
             ConfigureRegionAdapterMappings();
             ConfigureDefaultRegionBehaviors();
             RegisterFrameworkExceptionTypes();
 
-            logger.Log("Creating shell", Category.Debug, Priority.Low);
             var shell = CreateShell();
             if (shell != null)
             {
@@ -53,12 +44,8 @@ namespace ChinookMediaManager.Infrastructure
                 RegionManager.UpdateRegions();
             }
 
-            logger.Log("Initializing modules", Category.Debug, Priority.Low);
             InitializeModules();
-
-            logger.Log("Bootstrapper sequence completed", Category.Debug, Priority.Low);
         }
-
         /// <summary>
         /// Configures the <see cref="IRegionBehaviorFactory"/>. This will be the list of default
         /// behaviors that will be added to a region. 
@@ -66,27 +53,17 @@ namespace ChinookMediaManager.Infrastructure
         protected override IRegionBehaviorFactory ConfigureDefaultRegionBehaviors()
         {
             var defaultRegionBehaviorTypesDictionary = Container.TryGetInstance<IRegionBehaviorFactory>();
-
             if (defaultRegionBehaviorTypesDictionary != null)
             {
-                defaultRegionBehaviorTypesDictionary.AddIfMissing(AutoPopulateRegionBehavior.BehaviorKey,
-                                                                  typeof(AutoPopulateRegionBehavior));
+                Action<string, Type> addIfMissing = defaultRegionBehaviorTypesDictionary.AddIfMissing;
 
-                defaultRegionBehaviorTypesDictionary.AddIfMissing(BindRegionContextToDependencyObjectBehavior.BehaviorKey,
-                                                                  typeof(BindRegionContextToDependencyObjectBehavior));
-
-                defaultRegionBehaviorTypesDictionary.AddIfMissing(RegionActiveAwareBehavior.BehaviorKey,
-                                                                  typeof(RegionActiveAwareBehavior));
-
-                defaultRegionBehaviorTypesDictionary.AddIfMissing(SyncRegionContextWithHostBehavior.BehaviorKey,
-                                                                  typeof(SyncRegionContextWithHostBehavior));
-
-                defaultRegionBehaviorTypesDictionary.AddIfMissing(RegionManagerRegistrationBehavior.BehaviorKey,
-                                                                  typeof(RegionManagerRegistrationBehavior));
-
+                addIfMissing(AutoPopulateRegionBehavior.BehaviorKey, typeof (AutoPopulateRegionBehavior));
+                addIfMissing(BindRegionContextToDependencyObjectBehavior.BehaviorKey, typeof (BindRegionContextToDependencyObjectBehavior));
+                addIfMissing(RegionActiveAwareBehavior.BehaviorKey, typeof (RegionActiveAwareBehavior));
+                addIfMissing(SyncRegionContextWithHostBehavior.BehaviorKey, typeof (SyncRegionContextWithHostBehavior));
+                addIfMissing(RegionManagerRegistrationBehavior.BehaviorKey, typeof (RegionManagerRegistrationBehavior));
             }
             return defaultRegionBehaviorTypesDictionary;
-
         }
 
         /// <summary>
@@ -152,30 +129,6 @@ namespace ChinookMediaManager.Infrastructure
             }
 
             return regionAdapterMappings;
-        }
-
-        /// <summary>
-        /// Initializes the modules. May be overwritten in a derived class to use custom
-        /// module loading and avoid using an <seealso cref="IModuleManager"/> and
-        /// <seealso cref="IModuleManager"/>.
-        /// </summary>
-        protected override void InitializeModules()
-        {
-            IModuleManager manager;
-
-            try
-            {
-                manager = Container.GetInstance<IModuleManager>();
-            }
-            catch (StructureMapException ex)
-            {
-                if (ex.Message.Contains("IModuleCatalog"))
-                    throw new InvalidOperationException("Module not found.");
-
-                throw;
-            }
-
-            manager.Run();
         }
 
         /// <summary>

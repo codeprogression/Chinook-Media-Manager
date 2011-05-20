@@ -3,11 +3,11 @@ using ChinookMediaManager.Infrastructure.DynamicViewModel;
 
 namespace ChinookMediaManager.ViewModels
 {
-    public class AlbumViewModel : DynamicViewModelBase<AlbumViewModel, Album>
+    public class AlbumViewModel : ViewModelProxy<AlbumViewModel, Album>
     {
         public AlbumViewModel(Album album) : this()
         {
-            WrappedEntity = album;
+            Entity = album;
         }
 
         public AlbumViewModel()

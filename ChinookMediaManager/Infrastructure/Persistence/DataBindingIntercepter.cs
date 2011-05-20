@@ -6,16 +6,12 @@ namespace ChinookMediaManager.Infrastructure.Persistence
     //http://ayende.com/blog/4106/nhibernate-inotifypropertychanged
     public class DataBindingIntercepter : EmptyInterceptor
     {
-        public DataBindingIntercepter()
-        {
-        }
-
         public DataBindingIntercepter(ISessionFactory sessionFactory)
         {
-            SessionFactory = sessionFactory;
+            _sessionFactory = sessionFactory;
         }
 
-        public ISessionFactory SessionFactory { set; get; }
+        private readonly ISessionFactory _sessionFactory;
 
         public override object Instantiate(string clazz, EntityMode entityMode, object id)
         {
@@ -25,7 +21,7 @@ namespace ChinookMediaManager.Infrastructure.Persistence
                 if (type != null)
                 {
                     var instance = DataBindingFactory.Create(type);
-                    SessionFactory.GetClassMetadata(clazz).SetIdentifier(instance, id, entityMode);
+                    _sessionFactory.GetClassMetadata(clazz).SetIdentifier(instance, id, entityMode);
                     return instance;
                 }
             }

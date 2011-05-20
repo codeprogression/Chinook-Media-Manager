@@ -95,7 +95,7 @@
     <Compile Include="ViewModels\AlbumsBrowseViewModel.cs" />
     <Compile Include="ViewModels\AlbumViewModel.cs" />
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Infrastructure\DynamicViewModel\DynamicViewModelBase.cs" />
+    <Compile Include="Infrastructure\DynamicViewModel\ViewModelProxy.cs" />
     <Compile Include="Infrastructure\DynamicViewModel\ExpressionExtensions.cs" />
     <Compile Include="Infrastructure\DynamicViewModel\PropertyInfoExtensions.cs" />
     <Compile Include="Infrastructure\Persistence\DataBindingFactory.cs" />

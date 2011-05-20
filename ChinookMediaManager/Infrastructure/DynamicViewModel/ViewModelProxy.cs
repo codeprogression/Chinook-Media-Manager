@@ -1,7 +1,9 @@
-//Copyright 2010 LeaseTeam Inc. All rights reserved.
+// Based on http://blog.iovoodoo.com/2010/11/wpf-mvvm-made-simple-using-a-dynamic-view-model/
 //
-//Redistribution and use in source and binary forms, with or without modification, are
-//permitted provided that the following conditions are met:
+// Copyright 2010 LeaseTeam Inc. All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without modification, are
+// permitted provided that the following conditions are met:
 //
 //   1. Redistributions of source code must retain the above copyright notice, this list of
 //      conditions and the following disclaimer.
@@ -16,7 +18,6 @@
 //
 //      --richard, CodeProgression
 //
-// http://blog.iovoodoo.com/2010/11/wpf-mvvm-made-simple-using-a-dynamic-view-model/
 
 using System;
 using System.Collections.Concurrent;
@@ -28,58 +29,54 @@ using System.Reflection;
 
 namespace ChinookMediaManager.Infrastructure.DynamicViewModel
 {
-    public abstract class DynamicViewModelBase<S, T> : DynamicObject, INotifyPropertyChanged where T : class, new()
+    public abstract class ViewModelProxy<VIEWMODEL, MODEL> : DynamicObject, INotifyPropertyChanged where MODEL : class, new()
     {
-        protected readonly T EmptyEntity = new T();
-        private readonly Lazy<ConcurrentDictionary<string, Tuple<Func<T, object>, Action<T, object>>>> _propertyMap;
-        private dynamic _dynamicProperties;
-        private T _wrappedEntity;
+        protected readonly MODEL EmptyEntity = new MODEL();
+        private readonly Lazy<ConcurrentDictionary<string, Tuple<Func<MODEL, object>, Action<MODEL, object>>>> _propertyMap;
+        private dynamic _properties;
+        private MODEL _entity;
 
-        protected DynamicViewModelBase()
+        protected ViewModelProxy()
         {
-            _propertyMap = new Lazy<ConcurrentDictionary<string, Tuple<Func<T, object>, Action<T, object>>>>(() => new ConcurrentDictionary <string, Tuple<Func<T,object>, Action<T,object>>>());
+            _propertyMap =
+                new Lazy<ConcurrentDictionary<string, Tuple<Func<MODEL, object>, Action<MODEL, object>>>>(
+                    () => new ConcurrentDictionary<string, Tuple<Func<MODEL, object>, Action<MODEL, object>>>());
             AddProperty("HasCurrent", p => HasCurrent);
         }
 
-        protected virtual T WrappedEntity
+        protected virtual MODEL Entity
         {
-            get { return _wrappedEntity ?? EmptyEntity; }
+            get { return _entity ?? EmptyEntity; }
             set
             {
-                if (value == _wrappedEntity) return;
+                if (value == _entity) return;
                 
-                if ((_wrappedEntity as INotifyPropertyChanged) != null)
-                {
-                    ((INotifyPropertyChanged) _wrappedEntity).PropertyChanged -= RedirectPropertyChanged;
-                }
+                if ((_entity as INotifyPropertyChanged) != null)
+                    ((INotifyPropertyChanged) _entity).PropertyChanged -= RedirectPropertyChanged;
                 
-                _wrappedEntity = value;
+                _entity = value;
                 
-                if ((_wrappedEntity as INotifyPropertyChanged) != null)
-                {
-                    ((INotifyPropertyChanged) _wrappedEntity).PropertyChanged += RedirectPropertyChanged;
-                }
+                if ((_entity as INotifyPropertyChanged) != null)
+                    ((INotifyPropertyChanged) _entity).PropertyChanged += RedirectPropertyChanged;
 
                 foreach (var property in PropertyMap.Keys)
-                {
                     OnPropertyChanged(property);
-                }
             }
         }
 
-        protected ConcurrentDictionary<string, Tuple<Func<T, object>, Action<T, object>>> PropertyMap
+        protected ConcurrentDictionary<string, Tuple<Func<MODEL, object>, Action<MODEL, object>>> PropertyMap
         {
             get { return _propertyMap.Value; }
         }
 
         protected bool HasCurrent
         {
-            get { return _wrappedEntity != null; }
+            get { return _entity != null; }
         }
 
         protected dynamic DynamicProperties
         {
-            get { return _dynamicProperties ?? (_dynamicProperties = this); }
+            get { return _properties ?? (_properties = this); }
         }
 
         public override IEnumerable<string> GetDynamicMemberNames()
@@ -95,9 +92,9 @@ namespace ChinookMediaManager.Infrastructure.DynamicViewModel
             if (PropertyMap.ContainsKey(propertyName))
             {
                 var value = PropertyMap[propertyName].Item1;
-                if (WrappedEntity != null)
+                if (Entity != null)
                 {
-                    result = value.Invoke(WrappedEntity);
+                    result = value.Invoke(Entity);
                 }
                 success = true;
             }
@@ -111,15 +108,12 @@ namespace ChinookMediaManager.Infrastructure.DynamicViewModel
             var success = false;
             if (PropertyMap.ContainsKey(propertyName))
             {
-                Action<T, object> setExpression = PropertyMap[propertyName].Item2;
-                if (setExpression != null)
+                var setExpression = PropertyMap[propertyName].Item2;
+                if (setExpression != null && Entity != null)
                 {
-                    if (WrappedEntity != null)
-                    {
-                        setExpression.Invoke(WrappedEntity, value);
-                        OnPropertyChanged(propertyName);
-                        success = true;
-                    }
+                    setExpression.Invoke(Entity, value);
+                    OnPropertyChanged(propertyName);
+                    success = true;
                 }
             }
 
@@ -130,7 +124,7 @@ namespace ChinookMediaManager.Infrastructure.DynamicViewModel
         /// Add a simple property of the domain object to the view model, 
         /// it will infer a setter expression from the provided get expression
         /// </summary>
-        protected void AddProperty(Expression<Func<T, object>> expression)
+        protected void AddProperty(Expression<Func<MODEL, object>> expression)
         {
             var memberExpression = expression.GetMemberExpression();
             if (!memberExpression.IsSimpleMemberAccess())
@@ -142,8 +136,8 @@ namespace ChinookMediaManager.Infrastructure.DynamicViewModel
             
             var propertyInfo = (PropertyInfo) memberExpression.Member;
             var propertyName = propertyInfo.Name;
-            var getExpression = propertyInfo.CanRead ? propertyInfo.GetValueGetter<T>() : null;
-            var setExpression = propertyInfo.CanWrite ? propertyInfo.GetValueSetter<T>() : null;
+            var getExpression = propertyInfo.CanRead ? propertyInfo.GetValueGetter<MODEL>() : null;
+            var setExpression = propertyInfo.CanWrite ? propertyInfo.GetValueSetter<MODEL>() : null;
             AddProperty(propertyName, getExpression, setExpression);
         }
 
@@ -152,15 +146,15 @@ namespace ChinookMediaManager.Infrastructure.DynamicViewModel
         /// if it is a simple or nested property access, it will infer a setter
         /// expression from the provided get expression
         /// </summary>
-        protected void AddProperty(string propertyAlias, Expression<Func<T, object>> expression)
+        protected void AddProperty(string propertyAlias, Expression<Func<MODEL, object>> expression)
         {
-            Action<T, object> setExpression = null;
+            Action<MODEL, object> setExpression = null;
             var memberExpression = expression.GetMemberExpression();
             if (memberExpression.IsNestedMemberAccess())
             {
                 var property = (PropertyInfo) memberExpression.Member;
                 var parentExpression =
-                    Expression.Lambda<Func<T, object>>(memberExpression.Expression, expression.Parameters).Compile();
+                    Expression.Lambda<Func<MODEL, object>>(memberExpression.Expression, expression.Parameters).Compile();
                 setExpression = (p, v) => property.SetValue(parentExpression.Invoke(p), v, null);
             }
             AddProperty(propertyAlias, expression.Compile(), setExpression);
@@ -170,17 +164,17 @@ namespace ChinookMediaManager.Infrastructure.DynamicViewModel
         /// Add an aliased property of the domain object to the view model, 
         /// can specify any get and any set operation.
         /// </summary>
-        protected void AddProperty(string propertyAlias, Expression<Func<T, object>> getExpression,
-                                   Expression<Action<T, object>> setExpression)
+        protected void AddProperty(string propertyAlias, Expression<Func<MODEL, object>> getExpression,
+                                   Expression<Action<MODEL, object>> setExpression)
         {
             AddProperty(propertyAlias, getExpression.Compile(), setExpression.Compile());
         }
 
       
 
-        private void AddProperty(string key, Func<T, object> getExpression, Action<T, object> setExpression)
+        private void AddProperty(string key, Func<MODEL, object> getExpression, Action<MODEL, object> setExpression)
         {
-            bool success = PropertyMap.TryAdd(key, Tuple.Create(getExpression, setExpression));
+            var success = PropertyMap.TryAdd(key, Tuple.Create(getExpression, setExpression));
             if (!success)
             {
                 throw new InvalidOperationException(
@@ -204,7 +198,7 @@ namespace ChinookMediaManager.Infrastructure.DynamicViewModel
             }
         }
 
-        protected virtual void NotifyPropertyChanged(params Expression<Func<S, object>>[] properties)
+        protected virtual void NotifyPropertyChanged(params Expression<Func<VIEWMODEL, object>>[] properties)
         {
             foreach (var property in properties)
             {

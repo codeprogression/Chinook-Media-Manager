@@ -6,6 +6,15 @@ namespace ChinookMediaManager.Infrastructure.Persistence
     //http://ayende.com/blog/4106/nhibernate-inotifypropertychanged
     public class DataBindingIntercepter : EmptyInterceptor
     {
+        public DataBindingIntercepter()
+        {
+        }
+
+        public DataBindingIntercepter(ISessionFactory sessionFactory)
+        {
+            SessionFactory = sessionFactory;
+        }
+
         public ISessionFactory SessionFactory { set; get; }
 
         public override object Instantiate(string clazz, EntityMode entityMode, object id)

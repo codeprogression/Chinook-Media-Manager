@@ -1,14 +1,15 @@
 ﻿using ChinookMediaManager.ViewModels;
-using Microsoft.Practices.Unity;
+
+using StructureMap;
 
 namespace ChinookMediaManager.Views
 {
 	public partial class ShellView 
 	{
-		public ShellView(IUnityContainer container)
+        public ShellView(IContainer container)
 		{
 		    InitializeComponent();
-		    DataContext = container.Resolve<ShellViewModel>();
+		    DataContext = container.GetInstance<ShellViewModel>();
 		}
 	}
 }

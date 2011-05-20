@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using Microsoft.Practices.Unity;
+
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 
@@ -20,7 +20,6 @@ namespace ChinookMediaManager.Infrastructure.Persistence
         public NHibernateConfiguration() : this(null, null, null) { }
         public NHibernateConfiguration(IEnumerable<IAutoPersistenceModelConfiguration> models) : this(models, null, null) { }
 
-        [InjectionConstructor]
         public NHibernateConfiguration(IEnumerable<IAutoPersistenceModelConfiguration> models, IEnumerable<IFluentMappingConfiguration> fluentMappings, IEnumerable<IHbmMappingConfiguration> hbmMappings)
         {
             _models = models ?? new List<IAutoPersistenceModelConfiguration>(new[]{ new EntityAutoPersistenceModelConfiguration()});
@@ -61,14 +60,16 @@ namespace ChinookMediaManager.Infrastructure.Persistence
                 {
                     c.SetProperty("generate_statistics", "true");
                     SchemaConfig = c;
+                    schema.Invoke(c);
                 });
                 return fluentConfiguration.BuildSessionFactory();
             }
+// ReSharper disable RedundantCatchClause
             catch (Exception ex)
             {
-//                Log.Fatal(this, "Failed to create session factory", ex);
                 throw;
             }
+// ReSharper restore RedundantCatchClause
         }
 
         protected virtual Action<MappingConfiguration> CreateMappings()
@@ -92,7 +93,7 @@ namespace ChinookMediaManager.Infrastructure.Persistence
 
         protected virtual void BuildSchema(NHibernate.Cfg.Configuration config)
         {
-            new SchemaExport(config).Create(false, true);
+            new SchemaExport(config).Create(false, false);
         }
     }
 }

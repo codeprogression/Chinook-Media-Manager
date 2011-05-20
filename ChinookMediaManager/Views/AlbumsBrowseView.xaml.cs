@@ -1,14 +1,15 @@
 ﻿using ChinookMediaManager.ViewModels;
-using Microsoft.Practices.Unity;
+
+using StructureMap;
 
 namespace ChinookMediaManager.Views
 {
 	public partial class AlbumsBrowseView
 	{
-		public AlbumsBrowseView(IUnityContainer container)
+		public AlbumsBrowseView(IContainer container)
 		{
 		    InitializeComponent();
-		    DataContext = container.Resolve<AlbumsBrowseViewModel>();
+		    DataContext = container.GetInstance<AlbumsBrowseViewModel>();
 		}
 	}
 }

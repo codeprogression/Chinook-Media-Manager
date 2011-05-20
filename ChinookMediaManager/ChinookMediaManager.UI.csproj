@@ -88,7 +88,8 @@
     </ApplicationDefinition>
     <Compile Include="Domain\AlbumRepository.cs" />
     <Compile Include="Infrastructure\Persistence\NHibernateRegistry.cs" />
-    <Compile Include="Infrastructure\StructureMapBootstrapper.cs" />
+    <Compile Include="Infrastructure\Prism\ModuleRegistry.cs" />
+    <Compile Include="Infrastructure\Prism\StructureMapBootstrapper.cs" />
     <Compile Include="Views\AlbumsBrowseView.xaml.cs">
       <DependentUpon>AlbumsBrowseView.xaml</DependentUpon>
     </Compile>

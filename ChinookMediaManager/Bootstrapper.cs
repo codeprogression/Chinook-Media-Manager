@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using ChinookMediaManager.Infrastructure;
 using ChinookMediaManager.Infrastructure.Persistence;
+using ChinookMediaManager.Infrastructure.Prism;
 using ChinookMediaManager.Views;
-
-using NHibernate;
 
 namespace ChinookMediaManager
 {
@@ -23,7 +20,7 @@ namespace ChinookMediaManager
             Container.Configure(x =>
             {
                 x.AddRegistry<NHibernateRegistry>();
-//                x.AddRegistry<ModuleRegistry>();
+                x.AddRegistry<ModuleRegistry>();
             });
             base.ConfigureContainer();
 

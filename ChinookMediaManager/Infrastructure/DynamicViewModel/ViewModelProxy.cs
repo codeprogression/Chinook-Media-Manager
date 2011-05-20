@@ -42,7 +42,22 @@ namespace ChinookMediaManager.Infrastructure.DynamicViewModel
                 new Lazy<ConcurrentDictionary<string, Tuple<Func<MODEL, object>, Action<MODEL, object>>>>(
                     () => new ConcurrentDictionary<string, Tuple<Func<MODEL, object>, Action<MODEL, object>>>());
             AddProperty("HasCurrent", p => HasCurrent);
+            ConfigurePropertyMap();
         }
+
+        protected ViewModelProxy(MODEL entity) : this()
+        {
+            Entity = entity;
+        }
+
+        /// <summary>
+        /// Run after property map has been configured. 
+        /// Used to expose properties from the domain model to the view model (with overrideable setters)
+        /// </summary>
+        /// <example>Simple Property: <![CDATA[AddProperty(p => p.Id);]]></example>
+        /// <example>Property with set interceptor: <![CDATA[AddProperty("Description", p => p.Description, (p,v) => SetDescription((string)v);]]></example>
+        /// <example>Viewmodel data: <![CDATA[AddProperty("Contacts", p => p.Service.GetContacts(p.Id));]]></example>
+        protected abstract void ConfigurePropertyMap();
 
         protected virtual MODEL Entity
         {

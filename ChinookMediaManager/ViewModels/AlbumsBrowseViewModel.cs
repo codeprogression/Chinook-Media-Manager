@@ -1,40 +1,46 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using ChinookMediaManager.Core.DynamicViewModel;
 using ChinookMediaManager.Domain;
-using Microsoft.Practices.Prism.Commands;
 using System.Linq;
+using Microsoft.Practices.Prism.Commands;
 
 namespace ChinookMediaManager.ViewModels
 {
-    public class AlbumsBrowseViewModel : ObservableCollection<AlbumViewModel>
+    public class AlbumsBrowseViewModel : CollectionViewModelProxy<AlbumViewModel,Album>
     {
         private readonly AlbumRepository _repository;
 
         public ICommand PlayAlbumCommand { get; set; }
-        public ObservableCollection<AlbumViewModel> Subject { get; set; }
 
         public AlbumsBrowseViewModel(AlbumRepository repository)
         {
             _repository = repository;
-            InitializeModel();
+            PlayAlbumCommand = new DelegateCommand<AlbumViewModel>(PlayAlbumExecute, PlayAlbumCanExecute);
+            Load();
+        }
+
+        protected override void ConfigurePropertyMap()
+        {
             
         }
 
-        private void InitializeModel()
+        protected override void Load()
         {
-            Subject = new ObservableCollection<AlbumViewModel>(_repository.GetAlbumList().Select(album=>new AlbumViewModel(album)));
-            PlayAlbumCommand = new DelegateCommand<object>(PlayAlbumExecute, PlayAlbumCanExecute);
+            var albums = _repository.GetAlbumList();
+            Model.Clear();
+            if (albums.Any())
+                albums.Select(album=>new AlbumViewModel(album)).ToList().ForEach(Model.Add);
         }
-        
-        private bool PlayAlbumCanExecute(object arg)
+        private bool PlayAlbumCanExecute(AlbumViewModel album)
         {
             return true;
         }
 
-        private void PlayAlbumExecute(object obj)
+        private void PlayAlbumExecute(AlbumViewModel album)
         {
-            _repository.UpdateLastPlayed((int)obj);
+            _repository.UpdateLastPlayed(album.GetId());
+            OnPropertyChanged("SelectedItem");
         }
-
     }
 }

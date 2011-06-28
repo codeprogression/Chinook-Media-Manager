@@ -1,15 +1,16 @@
 ﻿<UserControl x:Class="ChinookMediaManager.Views.AlbumsBrowseView"
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Name="uc1"
              >
 	<DockPanel>
-        <DataGrid ItemsSource="{Binding Subject}" 
+        <DataGrid ItemsSource="{Binding Model}" 
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False" 
                   CanUserDeleteRows="False" 
                   VerticalScrollBarVisibility="Visible" 
                   IsReadOnly="True" 
+                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
                   >
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Artist">
@@ -35,8 +36,8 @@
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Play" Command="{Binding DataContext.PlayAlbumCommand, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" CommandParameter="{Binding Id}"/>
+                        <DataTemplate >
+                            <Button Content="Play" Command="{Binding DataContext.PlayAlbumCommand, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" CommandParameter="{Binding}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

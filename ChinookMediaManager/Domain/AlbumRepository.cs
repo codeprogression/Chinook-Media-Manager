@@ -13,10 +13,9 @@ namespace ChinookMediaManager.Domain
             _session = session;
         }
 
-        public IEnumerable<Album> GetAlbumList()
+        public IList<Album> GetAlbumList()
         {
-            var albumList = _session.QueryOver<Album>().Fetch(x=>x.Artist).Eager.List();
-            return albumList;
+            return _session.QueryOver<Album>().Fetch(x=>x.Artist).Eager.List();
         }
 
         public void UpdateLastPlayed(int albumId)

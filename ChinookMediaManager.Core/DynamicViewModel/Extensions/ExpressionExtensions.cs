@@ -16,7 +16,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace ChinookMediaManager.Core.DynamicViewModel
+namespace ChinookMediaManager.Core.DynamicViewModel.Extensions
 {
     public static class ExpressionExtensions
     {
@@ -24,6 +24,13 @@ namespace ChinookMediaManager.Core.DynamicViewModel
         {
             var result = (expression.NodeType == ExpressionType.MemberAccess);
             result &= (expression.Expression.NodeType == ExpressionType.Parameter);
+            return result;
+        }
+
+        public static bool IsConstantMemberAccess(this MemberExpression expression)
+        {
+            var result = (expression.NodeType == ExpressionType.MemberAccess);
+            result &= (expression.Expression.NodeType == ExpressionType.Constant);
             return result;
         }
 

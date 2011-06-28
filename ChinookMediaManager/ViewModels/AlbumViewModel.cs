@@ -5,7 +5,12 @@ namespace ChinookMediaManager.ViewModels
 {
     public class AlbumViewModel : ViewModelProxy<AlbumViewModel, Album>
     {
-        public AlbumViewModel(Album album) : base(album){}
+        
+        
+        public AlbumViewModel(Album album) : base(album)
+        {
+        
+        }
 
         protected override void ConfigurePropertyMap()
         {
@@ -14,5 +19,7 @@ namespace ChinookMediaManager.ViewModels
             AddProperty(p => p.Artist);
             AddProperty(p => p.LastPlayed);
         }
+
+        
     }
 }

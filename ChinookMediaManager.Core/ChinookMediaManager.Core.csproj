@@ -79,8 +79,12 @@
   <ItemGroup>
     <Compile Include="Bootstrap\ModuleRegistry.cs" />
     <Compile Include="Bootstrap\StructureMapBootstrapper.cs" />
-    <Compile Include="DynamicViewModel\ExpressionExtensions.cs" />
-    <Compile Include="DynamicViewModel\PropertyInfoExtensions.cs" />
+    <Compile Include="DynamicViewModel\CollectionViewModelProxy.cs" />
+    <Compile Include="DynamicViewModel\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="DynamicViewModel\Extensions\ExpressionExtensions.cs" />
+    <Compile Include="DynamicViewModel\Extensions\PropertyInfoExtensions.cs" />
+    <Compile Include="DynamicViewModel\ModelProxy.cs" />
+    <Compile Include="DynamicViewModel\ViewModelBase.cs" />
     <Compile Include="DynamicViewModel\ViewModelProxy.cs" />
     <Compile Include="Persistence\DatabaseConstants.cs" />
     <Compile Include="Persistence\DataBindingFactory.cs" />

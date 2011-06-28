@@ -1,4 +1,5 @@
 ﻿using ChinookMediaManager.Core.Prism;
+using ChinookMediaManager.Module.Albums.Browse;
 using Microsoft.Practices.Prism.Regions;
 
 namespace ChinookMediaManager.Module.Albums

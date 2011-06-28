@@ -3,7 +3,7 @@ using ChinookMediaManager.Core.DynamicViewModel;
 using ChinookMediaManager.Domain.Entities;
 using NHibernate;
 
-namespace ChinookMediaManager.Module.Albums
+namespace ChinookMediaManager.Module.Albums.Browse
 {
     public class AlbumViewModel : ViewModelProxy<AlbumViewModel, Album>
     {
@@ -22,7 +22,7 @@ namespace ChinookMediaManager.Module.Albums
 
         public void UpdatePlayed(ISession session)
         {
-            ((dynamic)this).LastPlayed = DateTime.UtcNow;
+            Model.LastPlayed = DateTime.UtcNow;
             Update(session);
         }
     }

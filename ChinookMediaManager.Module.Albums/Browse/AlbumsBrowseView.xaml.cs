@@ -1,4 +1,4 @@
-﻿namespace ChinookMediaManager.Module.Albums
+﻿namespace ChinookMediaManager.Module.Albums.Browse
 {
 	public partial class AlbumsBrowseView
 	{

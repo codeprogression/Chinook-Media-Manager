@@ -92,7 +92,6 @@
     <Compile Include="Configuration\EntityAutoPersistenceModelConfiguration.cs" />
     <Compile Include="Configuration\ForeignKeyNamePlusIdConvention.cs" />
     <Compile Include="Configuration\PrimaryKeyConvention.cs" />
-    <Compile Include="Domain\AlbumRepository.cs" />
     <Compile Include="Views\AlbumsBrowseView.xaml.cs">
       <DependentUpon>AlbumsBrowseView.xaml</DependentUpon>
     </Compile>

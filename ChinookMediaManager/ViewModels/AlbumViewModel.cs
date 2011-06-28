@@ -1,15 +1,15 @@
-﻿using ChinookMediaManager.Core.DynamicViewModel;
+﻿using System;
+using ChinookMediaManager.Core.DynamicViewModel;
 using ChinookMediaManager.Domain;
+using NHibernate;
 
 namespace ChinookMediaManager.ViewModels
 {
     public class AlbumViewModel : ViewModelProxy<AlbumViewModel, Album>
     {
         
-        
         public AlbumViewModel(Album album) : base(album)
         {
-        
         }
 
         protected override void ConfigurePropertyMap()
@@ -20,6 +20,10 @@ namespace ChinookMediaManager.ViewModels
             AddProperty(p => p.LastPlayed);
         }
 
-        
+        public void UpdatePlayed(ISession session)
+        {
+            ((dynamic)this).LastPlayed = DateTime.UtcNow;
+            Update(session);
+        }
     }
 }

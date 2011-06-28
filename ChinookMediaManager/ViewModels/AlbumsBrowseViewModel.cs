@@ -1,21 +1,20 @@
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ChinookMediaManager.Core.DynamicViewModel;
 using ChinookMediaManager.Domain;
 using System.Linq;
 using Microsoft.Practices.Prism.Commands;
+using NHibernate;
 
 namespace ChinookMediaManager.ViewModels
 {
     public class AlbumsBrowseViewModel : CollectionViewModelProxy<AlbumViewModel,Album>
     {
-        private readonly AlbumRepository _repository;
+        readonly ISession _session;
 
         public ICommand PlayAlbumCommand { get; set; }
-
-        public AlbumsBrowseViewModel(AlbumRepository repository)
+        public AlbumsBrowseViewModel(ISession session)
         {
-            _repository = repository;
+            _session = session;
             PlayAlbumCommand = new DelegateCommand<AlbumViewModel>(PlayAlbumExecute, PlayAlbumCanExecute);
             Load();
         }
@@ -27,11 +26,12 @@ namespace ChinookMediaManager.ViewModels
 
         protected override void Load()
         {
-            var albums = _repository.GetAlbumList();
+            var albums =_session.QueryOver<Album>().Fetch(x=>x.Artist).Eager.List();
             Model.Clear();
             if (albums.Any())
                 albums.Select(album=>new AlbumViewModel(album)).ToList().ForEach(Model.Add);
         }
+
         private bool PlayAlbumCanExecute(AlbumViewModel album)
         {
             return true;
@@ -39,8 +39,7 @@ namespace ChinookMediaManager.ViewModels
 
         private void PlayAlbumExecute(AlbumViewModel album)
         {
-            _repository.UpdateLastPlayed(album.GetId());
-            OnPropertyChanged("SelectedItem");
+            album.UpdatePlayed(_session);
         }
     }
 }

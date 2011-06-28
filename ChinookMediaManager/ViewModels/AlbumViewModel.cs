@@ -1,6 +1,5 @@
-﻿using System;
+﻿using ChinookMediaManager.Core.DynamicViewModel;
 using ChinookMediaManager.Domain;
-using ChinookMediaManager.Infrastructure.DynamicViewModel;
 
 namespace ChinookMediaManager.ViewModels
 {

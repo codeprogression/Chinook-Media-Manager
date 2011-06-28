@@ -14,7 +14,7 @@ namespace ChinookMediaManager.Infrastructure.Persistence
                 s.AddAllTypesOf<IHbmMappingConfiguration>();
             });
 
-            For<ISessionFactory>().Use(c => c.GetInstance<NHibernateConfiguration>().CreateSessionFactory());
+            ForSingletonOf<ISessionFactory>().Use(c => c.GetInstance<NHibernateConfiguration>().CreateSessionFactory());
 
             // TODO: Implement Session Per Conversation
             For<ISession>().Use(c =>

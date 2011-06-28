@@ -1,8 +1,8 @@
 ﻿using System.Windows;
-using ChinookMediaManager.Infrastructure;
-using ChinookMediaManager.Infrastructure.Persistence;
-using ChinookMediaManager.Infrastructure.Prism;
+using ChinookMediaManager.Core.Bootstrap;
+using ChinookMediaManager.Core.Persistence;
 using ChinookMediaManager.Views;
+using Microsoft.Practices.Prism.Modularity;
 
 namespace ChinookMediaManager
 {
@@ -15,12 +15,27 @@ namespace ChinookMediaManager
             return shellView;
         }
 
+        protected override IModuleCatalog GetModuleCatalog()
+        {
+            var moduleCatalog = new ModuleCatalog();
+            foreach (var module in Container.GetAllInstances<IModule>())
+            {
+                moduleCatalog.AddModule(module.GetType());
+            }
+            return moduleCatalog;
+        }
+
         protected override void ConfigureContainer()
         {
             Container.Configure(x =>
             {
                 x.AddRegistry<NHibernateRegistry>();
                 x.AddRegistry<ModuleRegistry>();
+                x.Scan(s=>
+                    {
+                        s.AssembliesFromApplicationBaseDirectory();
+                        s.WithDefaultConventions();
+                    });
             });
             base.ConfigureContainer();
 

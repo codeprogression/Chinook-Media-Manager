@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using ChinookMediaManager.Infrastructure.Persistence;
+﻿using ChinookMediaManager.Core.Persistence;
 
 namespace ChinookMediaManager.Domain
 {

@@ -43,6 +43,9 @@
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.2.0.712\lib\FluentNHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
+      <HintPath>..\packages\NHibernateProfiler.1.0.0.894\lib\Net40\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -83,35 +86,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bootstrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\EntityAutoMappingConfiguration.cs" />
+    <Compile Include="Configuration\EntityAutoPersistenceModelConfiguration.cs" />
     <Compile Include="Domain\AlbumRepository.cs" />
-    <Compile Include="Infrastructure\Persistence\NHibernateRegistry.cs" />
-    <Compile Include="Infrastructure\Prism\ModuleRegistry.cs" />
-    <Compile Include="Infrastructure\Prism\StructureMapBootstrapper.cs" />
     <Compile Include="Views\AlbumsBrowseView.xaml.cs">
       <DependentUpon>AlbumsBrowseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AlbumsBrowseViewModel.cs" />
     <Compile Include="ViewModels\AlbumViewModel.cs" />
-    <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Infrastructure\DynamicViewModel\ViewModelProxy.cs" />
-    <Compile Include="Infrastructure\DynamicViewModel\ExpressionExtensions.cs" />
-    <Compile Include="Infrastructure\DynamicViewModel\PropertyInfoExtensions.cs" />
-    <Compile Include="Infrastructure\Persistence\DataBindingFactory.cs" />
-    <Compile Include="Infrastructure\Persistence\DataBindingIntercepter.cs" />
     <Compile Include="Domain\Album.cs" />
     <Compile Include="Domain\Artist.cs" />
     <Compile Include="Domain\Entity.cs" />
     <Compile Include="Domain\Genre.cs" />
     <Compile Include="Domain\MediaType.cs" />
     <Compile Include="Domain\Track.cs" />
-    <Compile Include="Infrastructure\Persistence\DatabaseConstants.cs" />
-    <Compile Include="Infrastructure\Persistence\EntityAutoMappingConfiguration.cs" />
-    <Compile Include="Infrastructure\Persistence\EntityAutoPersistenceModelConfiguration.cs" />
-    <Compile Include="Infrastructure\Persistence\IAutoPersistenceModelConfiguration.cs" />
-    <Compile Include="Infrastructure\Persistence\IFluentMappingConfiguration.cs" />
-    <Compile Include="Infrastructure\Persistence\IHbmMappingConfiguration.cs" />
-    <Compile Include="Infrastructure\Persistence\IPersistable.cs" />
-    <Compile Include="Infrastructure\Persistence\NHibernateConfiguration.cs" />
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
@@ -160,7 +151,12 @@
     <Resource Include="Resources\Images\albums.jpg" />
     <Resource Include="Resources\Images\error.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ChinookMediaManager.Core\ChinookMediaManager.Core.csproj">
+      <Project>{F8D01FBA-E09C-4F9B-A8CA-2D11C0787E5E}</Project>
+      <Name>ChinookMediaManager.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

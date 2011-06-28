@@ -40,6 +40,8 @@ namespace ChinookMediaManager.ViewModels
         private void PlayAlbumExecute(AlbumViewModel album)
         {
             album.UpdatePlayed(_session);
+            _session.Transaction.Commit();
+            _session.BeginTransaction();
         }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using ChinookMediaManager.Core.Persistence;
 using FluentNHibernate.Automapping;
 
-namespace ChinookMediaManager.Configuration
+namespace ChinookMediaManager.Core.Persistence
 {
     public class EntityAutoMappingConfiguration : DefaultAutomappingConfiguration
     {

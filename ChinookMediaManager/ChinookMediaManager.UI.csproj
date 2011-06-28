@@ -89,8 +89,9 @@
     <Compile Include="Bootstrapper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Configuration\EntityAutoMappingConfiguration.cs" />
     <Compile Include="Configuration\EntityAutoPersistenceModelConfiguration.cs" />
+    <Compile Include="Configuration\ForeignKeyNamePlusIdConvention.cs" />
+    <Compile Include="Configuration\PrimaryKeyConvention.cs" />
     <Compile Include="Domain\AlbumRepository.cs" />
     <Compile Include="Views\AlbumsBrowseView.xaml.cs">
       <DependentUpon>AlbumsBrowseView.xaml</DependentUpon>
@@ -99,7 +100,6 @@
     <Compile Include="ViewModels\AlbumViewModel.cs" />
     <Compile Include="Domain\Album.cs" />
     <Compile Include="Domain\Artist.cs" />
-    <Compile Include="Domain\Entity.cs" />
     <Compile Include="Domain\Genre.cs" />
     <Compile Include="Domain\MediaType.cs" />
     <Compile Include="Domain\Track.cs" />

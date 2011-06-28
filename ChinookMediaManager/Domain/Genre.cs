@@ -1,4 +1,6 @@
-﻿namespace ChinookMediaManager.Domain
+﻿using ChinookMediaManager.Core.Persistence;
+
+namespace ChinookMediaManager.Domain
 {
 	public class Genre : Entity
 	{

@@ -1,10 +1,6 @@
-﻿using System;
-using ChinookMediaManager.Core.Persistence;
-using FluentNHibernate;
+﻿using ChinookMediaManager.Core.Persistence;
+using ChinookMediaManager.Domain;
 using FluentNHibernate.Automapping;
-using FluentNHibernate.Conventions;
-using FluentNHibernate.Conventions.Instances;
-using FluentNHibernate.Data;
 
 namespace ChinookMediaManager.Configuration
 {
@@ -13,28 +9,11 @@ namespace ChinookMediaManager.Configuration
         public AutoPersistenceModel GetModel()
         {
             return AutoMap
-                .AssemblyOf<Entity>(new EntityAutoMappingConfiguration())
+                .AssemblyOf<Album>(new EntityAutoMappingConfiguration())
                 .IgnoreBase<Entity>()
-                .UseOverridesFromAssemblyOf<Entity>()
-                .Conventions.AddFromAssemblyOf<Entity>()
+                .UseOverridesFromAssemblyOf<Album>()
+                .Conventions.AddFromAssemblyOf<Album>()
                 ;
-        }
-    }
-
-    public class PrimaryKeyConvention : IIdConvention
-    {
-        public void Apply(IIdentityInstance instance)
-        {
-            instance.Column(instance.EntityType.Name+"Id");
-        }
-
-    }
-    public class ForeignKeyNamePlusIdConvention : ForeignKeyConvention
-    {
-
-        protected override string GetKeyName(Member property, Type type)
-        {
-            return property == null ? type.Name + "Id" : property.Name + "Id";
         }
     }
 }

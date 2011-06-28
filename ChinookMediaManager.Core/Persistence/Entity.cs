@@ -1,6 +1,4 @@
-﻿using ChinookMediaManager.Core.Persistence;
-
-namespace ChinookMediaManager.Domain
+﻿namespace ChinookMediaManager.Core.Persistence
 {
     public abstract class Entity : IPersistable
     {

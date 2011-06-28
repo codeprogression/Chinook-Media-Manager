@@ -85,6 +85,8 @@
     <Compile Include="Persistence\DatabaseConstants.cs" />
     <Compile Include="Persistence\DataBindingFactory.cs" />
     <Compile Include="Persistence\DataBindingIntercepter.cs" />
+    <Compile Include="Persistence\Entity.cs" />
+    <Compile Include="Persistence\EntityAutoMappingConfiguration.cs" />
     <Compile Include="Persistence\IAutoPersistenceModelConfiguration.cs" />
     <Compile Include="Persistence\IFluentMappingConfiguration.cs" />
     <Compile Include="Persistence\IHbmMappingConfiguration.cs" />

@@ -1,4 +1,5 @@
-using System.Windows.Input;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using ChinookMediaManager.Core.DynamicViewModel;
 using ChinookMediaManager.Domain.Entities;
@@ -10,8 +11,21 @@ namespace ChinookMediaManager.Module.Albums
     public class AlbumsBrowseViewModel : CollectionViewModelProxy<AlbumViewModel,Album>
     {
         readonly ISession _session;
-
-        public ICommand PlayAlbumCommand { get; set; }
+        IList<Album> albums;
+        public DelegateCommand<AlbumViewModel> PlayAlbumCommand { get; set; }
+        
+        
+        bool _isReady;
+        public bool IsReady
+        {
+            get { return _isReady; }
+            set
+            {
+                _isReady = value;
+                OnPropertyChanged("IsReady");
+            }
+        }
+        
         public AlbumsBrowseViewModel(ISession session)
         {
             _session = session;
@@ -26,10 +40,12 @@ namespace ChinookMediaManager.Module.Albums
 
         protected override void Load()
         {
-            var albums =_session.QueryOver<Album>().Fetch(x=>x.Artist).Eager.List();
+            IsReady = false;
+            var albums = _session.QueryOver<Album>().Fetch(x => x.Artist).Eager.List();
             Model.Clear();
             if (albums.Any())
-                albums.Select(album=>new AlbumViewModel(album)).ToList().ForEach(Model.Add);
+                albums.Select(album => new AlbumViewModel(album)).ToList().ForEach(Model.Add);
+            IsReady = true;
         }
 
         private bool PlayAlbumCanExecute(AlbumViewModel album)

@@ -6,15 +6,15 @@
 
 	<DockPanel LastChildFill="True">
 
-		<ToolBar DockPanel.Dock="Top">
-			<Button Command="{Binding ShowAlbumsCommand}" Width="70">
-				<StackPanel>
-					<Image Source="/Resources/Images/albums.jpg" Width="32" Height="32" />
-					<TextBlock Text="Albums"/>
-				</StackPanel>
-			</Button>
-		</ToolBar>
-        <ContentControl p:RegionManager.RegionName="ContentRegion" />
+        <ToolBar DockPanel.Dock="Top">
+            <Button Width="70">
+                <StackPanel>
+                    <Image Source="/Resources/Images/albums.jpg"  Width="32" Height="32" />
+                    <TextBlock Text="Albums"/>
+                </StackPanel>
+            </Button>
+        </ToolBar>
+        <ContentControl p:RegionManager.RegionName="ContentRegion" DockPanel.Dock="Bottom"/>
 
     </DockPanel>
 

@@ -80,6 +80,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.1.4.0\lib\40\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -129,11 +132,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\add.png" />
-    <Resource Include="Resources\Images\albums.jpg" />
-    <Resource Include="Resources\Images\error.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ChinookMediaManager.Core\ChinookMediaManager.Core.csproj">
       <Project>{F8D01FBA-E09C-4F9B-A8CA-2D11C0787E5E}</Project>
       <Name>ChinookMediaManager.Core</Name>
@@ -142,6 +140,15 @@
       <Project>{404332EE-2756-4EE0-B9BF-911F0EE62483}</Project>
       <Name>ChinookMediaManager.Module.Albums</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\albums.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\error.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,10 +21,13 @@ namespace ChinookMediaManager.Domain
 
         public void UpdateLastPlayed(int albumId)
         {
+            _session.BeginTransaction();
             var album = _session.Get<Album>(albumId);
             album.LastPlayed = DateTime.Now;
             _session.SaveOrUpdate(album);
             _session.Flush();
+            _session.Transaction.Commit();
+            
         }
     }
 }

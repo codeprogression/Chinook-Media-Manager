@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using ChinookMediaManager.Core.Bootstrap;
 using HibernatingRhinos.Profiler.Appender.NHibernate;
 
 namespace ChinookMediaManager

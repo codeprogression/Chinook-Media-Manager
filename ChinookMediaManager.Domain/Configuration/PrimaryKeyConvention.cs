@@ -1,7 +1,7 @@
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Instances;
 
-namespace ChinookMediaManager.Configuration
+namespace ChinookMediaManager.Domain.Configuration
 {
     public class PrimaryKeyConvention : IIdConvention
     {

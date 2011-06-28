@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using ChinookMediaManager.Core.Bootstrap;
 using ChinookMediaManager.Core.Persistence;
-using ChinookMediaManager.Views;
 using Microsoft.Practices.Prism.Modularity;
 
 namespace ChinookMediaManager

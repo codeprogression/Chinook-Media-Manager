@@ -1,6 +1,6 @@
 ﻿using ChinookMediaManager.Core.Persistence;
 
-namespace ChinookMediaManager.Domain
+namespace ChinookMediaManager.Domain.Entities
 {
 	public class Track : Entity
 	{

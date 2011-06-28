@@ -1,9 +1,9 @@
 ﻿using System;
 using ChinookMediaManager.Core.DynamicViewModel;
-using ChinookMediaManager.Domain;
+using ChinookMediaManager.Domain.Entities;
 using NHibernate;
 
-namespace ChinookMediaManager.ViewModels
+namespace ChinookMediaManager.Module.Albums
 {
     public class AlbumViewModel : ViewModelProxy<AlbumViewModel, Album>
     {

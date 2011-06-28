@@ -1,8 +1,8 @@
 ﻿using ChinookMediaManager.Core.Persistence;
-using ChinookMediaManager.Domain;
+using ChinookMediaManager.Domain.Entities;
 using FluentNHibernate.Automapping;
 
-namespace ChinookMediaManager.Configuration
+namespace ChinookMediaManager.Domain.Configuration
 {
     public class EntityAutoPersistenceModelConfiguration : IAutoPersistenceModelConfiguration
     {

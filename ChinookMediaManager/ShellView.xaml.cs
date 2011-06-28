@@ -1,8 +1,6 @@
-﻿using ChinookMediaManager.ViewModels;
+﻿using StructureMap;
 
-using StructureMap;
-
-namespace ChinookMediaManager.Views
+namespace ChinookMediaManager
 {
 	public partial class ShellView 
 	{

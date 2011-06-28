@@ -1,8 +1,8 @@
 ﻿using ChinookMediaManager.Core.Persistence;
 
-namespace ChinookMediaManager.Domain
+namespace ChinookMediaManager.Domain.Entities
 {
-	public class Genre : Entity
+	public class Artist : Entity
 	{
 		public virtual string Name { get; set; }
 	}

@@ -1,11 +1,11 @@
 using System.Windows.Input;
-using ChinookMediaManager.Core.DynamicViewModel;
-using ChinookMediaManager.Domain;
 using System.Linq;
+using ChinookMediaManager.Core.DynamicViewModel;
+using ChinookMediaManager.Domain.Entities;
 using Microsoft.Practices.Prism.Commands;
 using NHibernate;
 
-namespace ChinookMediaManager.ViewModels
+namespace ChinookMediaManager.Module.Albums
 {
     public class AlbumsBrowseViewModel : CollectionViewModelProxy<AlbumViewModel,Album>
     {

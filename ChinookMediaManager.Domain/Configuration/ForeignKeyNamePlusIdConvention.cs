@@ -2,7 +2,7 @@ using System;
 using FluentNHibernate;
 using FluentNHibernate.Conventions;
 
-namespace ChinookMediaManager.Configuration
+namespace ChinookMediaManager.Domain.Configuration
 {
     public class ForeignKeyNamePlusIdConvention : ForeignKeyConvention
     {

@@ -1,9 +1,7 @@
-﻿<UserControl x:Class="ChinookMediaManager.Views.AlbumsBrowseView"
+﻿<UserControl x:Class="ChinookMediaManager.Module.Albums.AlbumsBrowseView"
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Name="uc1"
-             xmlns:media="System.Windows.Input.MediaCommands"
-             xmlns:ViewModels="clr-namespace:ChinookMediaManager.ViewModels">
+             x:Name="uc1">
 	<DockPanel>
         <DataGrid ItemsSource="{Binding Model}" 
                   AutoGenerateColumns="False" 

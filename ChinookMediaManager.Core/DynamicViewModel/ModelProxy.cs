@@ -22,17 +22,12 @@ using System.Dynamic;
 using System.Linq.Expressions;
 using System.Reflection;
 using ChinookMediaManager.Core.DynamicViewModel.Extensions;
-using Microsoft.Practices.Prism.Events;
-using Microsoft.Practices.ServiceLocation;
-using IContainer = StructureMap.IContainer;
 
 namespace ChinookMediaManager.Core.DynamicViewModel
 {
     public abstract class ModelProxy<VIEWMODEL, MODEL> : DynamicObject, INotifyPropertyChanged where MODEL : class, new()
     {
         protected readonly MODEL EmptyEntity = new MODEL();
-        protected IEventAggregator EventAggregator;
-        protected IContainer Container;
 
         private readonly Lazy<ConcurrentDictionary<string, Tuple<Func<MODEL, object>, Action<MODEL, object>>>> _propertyMap;
         private MODEL _wrappedEntity;
@@ -40,9 +35,7 @@ namespace ChinookMediaManager.Core.DynamicViewModel
         protected virtual bool CanDoRefresh() { return true; }
         protected ModelProxy()
         {
-            EventAggregator = (IEventAggregator) ServiceLocator.Current.GetInstance(typeof(IEventAggregator));
-            Container = (IContainer) ServiceLocator.Current.GetInstance(typeof(IContainer));
-            _propertyMap =
+           _propertyMap =
                 new Lazy<ConcurrentDictionary<string, Tuple<Func<MODEL, object>, Action<MODEL, object>>>>(
                     () => new ConcurrentDictionary<string, Tuple<Func<MODEL, object>, Action<MODEL, object>>>());
             AddProperty("HasCurrent", p => HasCurrent);
@@ -248,7 +241,7 @@ namespace ChinookMediaManager.Core.DynamicViewModel
 
         protected void SetProperty(string propertyName, object value)
         {
-            var setMethod = this.GetType().GetMethod("set_"+propertyName, BindingFlags.NonPublic|BindingFlags.Instance);
+            var setMethod = GetType().GetMethod("set_"+propertyName, BindingFlags.NonPublic|BindingFlags.Instance);
             setMethod.Invoke(this, new[] { value });
 
         }

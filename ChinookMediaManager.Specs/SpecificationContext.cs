@@ -17,8 +17,7 @@ namespace ChinookMediaManager.Specs
 
         protected override System.Func<IPersistenceConfigurer> GetSqlConfiguration()
         {
-            var sqllite = SQLiteConfiguration.Standard.InMemory();
-            return () => sqllite.ShowSql();
+            return () => SQLiteConfiguration.Standard.InMemory().ShowSql();
         }
 
         protected void RebuildSchema(NHibernate.Cfg.Configuration config)
@@ -44,7 +43,6 @@ namespace ChinookMediaManager.Specs
             Session = SessionFactory.OpenSession(new DataBindingIntercepter(sessionFactory));
             RebuildSchema(SchemaConfig);
         }
-
     }
 
     // http://www.tigraine.at/2009/05/29/fluent-nhibernate-gotchas-when-testing-with-an-in-memory-database/

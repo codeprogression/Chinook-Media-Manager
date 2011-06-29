@@ -1,5 +1,4 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
+﻿Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinookMediaManager.UI", "ChinookMediaManager\ChinookMediaManager.UI.csproj", "{0074F669-9F9E-414B-9864-2A7C9DCDD993}"
 EndProject

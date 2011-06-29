@@ -37,7 +37,6 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate >
-                                <!--                            <Button Content="Play" Command="{Binding PlayAlbumCommand}" />-->
                                 <Button Content="Play" Command="{Binding DataContext.PlayAlbumCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl}}"  CommandParameter="{Binding}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

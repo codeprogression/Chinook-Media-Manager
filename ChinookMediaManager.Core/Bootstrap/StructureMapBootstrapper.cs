@@ -16,7 +16,7 @@ using StructureMap.ServiceLocatorAdapter;
 
 namespace ChinookMediaManager.Core.Bootstrap
 {
-    public abstract class StructureMapBootstrapper : Microsoft.Practices.Prism.Bootstrapper
+    public abstract class StructureMapBootstrapper : Bootstrapper
     {
         private bool _useDefaultConfiguration = true;
 
@@ -97,7 +97,7 @@ namespace ChinookMediaManager.Core.Bootstrap
 
                 reg.RegisterSingletonType<IServiceLocator, StructureMapServiceLocator>();
                 reg.RegisterSingletonType<IModuleInitializer, ModuleInitializer>();
-                reg.RegisterSingletonType<Microsoft.Practices.Prism.Modularity.IModuleManager, Microsoft.Practices.Prism.Modularity.ModuleManager>();
+                reg.RegisterSingletonType<IModuleManager, ModuleManager>();
                 reg.RegisterSingletonType<RegionAdapterMappings, RegionAdapterMappings>();
                 reg.RegisterSingletonType<IRegionManager, RegionManager>();
                 reg.RegisterSingletonType<IEventAggregator, EventAggregator>();

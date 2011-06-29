@@ -25,12 +25,10 @@ namespace ChinookMediaManager.Module.Albums.Browse
 
         protected override void Load()
         {
-//            IsBusy = false;
             var albums = _session.QueryOver<Album>().Fetch(x => x.Artist).Eager.List();
             Model.Clear();
             if (albums.Any())
                 albums.Select(album => new AlbumViewModel(album)).ToList().ForEach(Model.Add);
-//            IsBusy = true;
         }
 
         private bool PlayAlbumCanExecute(AlbumViewModel album)

@@ -1,4 +1,4 @@
-Chinnok Media Manager
+Chinook Media Manager
 =====================
 
 This is a spike/playground where I am learning about WPF/MVVM.

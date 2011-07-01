@@ -1,5 +1,6 @@
-using System;
 using ChinookMediaManager.Prism.AlbumsModule.Browse;
+using ChinookMediaManager.Prism.Core.Extensions;
+using ChinookMediaManager.Prism.Core.RegionAdapters;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace ChinookMediaManager.Prism.AlbumsModule.Toolbar
 
         private void OpenAlbumsBrowseView()
         {
-            _regionManager.RequestNavigate("ContentRegion", new Uri(typeof (AlbumsBrowseView).Name, UriKind.Relative));
+            _regionManager.Navigate("ContentRegion", typeof(AlbumsBrowseView));
             OpenAlbumsBrowseViewCommand.RaiseCanExecuteChanged();
         }
     }

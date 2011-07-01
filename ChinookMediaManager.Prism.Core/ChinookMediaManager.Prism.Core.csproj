@@ -88,6 +88,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Extensions\RegionManagerExtensions.cs" />
     <Compile Include="RegionAdapters\ToolbarRegionAdapter.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,7 +1,7 @@
 using Microsoft.Practices.Prism.Commands;
 using NHibernate;
 
-namespace ChinookMediaManager.Core.DynamicViewModel
+namespace ChinookMediaManager.Prism.Core.DynamicViewModel
 {
     public abstract class ViewModelProxy<VIEWMODEL, MODEL> : ModelProxy<VIEWMODEL, MODEL> where MODEL : class, new()
     {

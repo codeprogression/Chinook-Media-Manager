@@ -1,6 +1,6 @@
 ﻿using System;
-using ChinookMediaManager.Core.DynamicViewModel;
 using ChinookMediaManager.Domain.Entities;
+using ChinookMediaManager.Prism.Core.DynamicViewModel;
 using NHibernate;
 
 namespace ChinookMediaManager.Prism.AlbumsModule.Browse

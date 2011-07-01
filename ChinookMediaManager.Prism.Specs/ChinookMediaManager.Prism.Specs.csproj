@@ -135,6 +135,10 @@
       <Project>{404332EE-2756-4EE0-B9BF-911F0EE62483}</Project>
       <Name>ChinookMediaManager.Prism.AlbumsModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ChinookMediaManager.Prism.Core\ChinookMediaManager.Prism.Core.csproj">
+      <Project>{8CB3597F-5C7B-4F17-9A59-6590A351E395}</Project>
+      <Name>ChinookMediaManager.Prism.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ChinookMediaManager.Prism.UI\ChinookMediaManager.Prism.UI.csproj">
       <Project>{0074F669-9F9E-414B-9864-2A7C9DCDD993}</Project>
       <Name>ChinookMediaManager.Prism.UI</Name>

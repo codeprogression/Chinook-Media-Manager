@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace ChinookMediaManager.Core.DynamicViewModel.Extensions
+namespace ChinookMediaManager.Prism.Core.DynamicViewModel.Extensions
 {
     public static class EnumerableExtensions
     {

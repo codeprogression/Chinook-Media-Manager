@@ -1,6 +1,6 @@
 using System.Linq;
-using ChinookMediaManager.Core.DynamicViewModel;
 using ChinookMediaManager.Domain.Entities;
+using ChinookMediaManager.Prism.Core.DynamicViewModel;
 using Microsoft.Practices.Prism.Commands;
 using NHibernate;
 

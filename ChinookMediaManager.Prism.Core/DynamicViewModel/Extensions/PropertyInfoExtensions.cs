@@ -17,7 +17,7 @@ using System;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace ChinookMediaManager.Core.DynamicViewModel.Extensions
+namespace ChinookMediaManager.Prism.Core.DynamicViewModel.Extensions
 {
     public static class PropertyInfoExtensions
     {

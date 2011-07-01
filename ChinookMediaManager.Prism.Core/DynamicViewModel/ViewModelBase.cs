@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Windows;
 using Microsoft.Practices.Prism.Commands;
 
-namespace ChinookMediaManager.Core.DynamicViewModel
+namespace ChinookMediaManager.Prism.Core.DynamicViewModel
 {
     public class ViewModelBase : DynamicObject, INotifyPropertyChanged
     {

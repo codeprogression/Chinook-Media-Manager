@@ -16,7 +16,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace ChinookMediaManager.Core.DynamicViewModel.Extensions
+namespace ChinookMediaManager.Prism.Core.DynamicViewModel.Extensions
 {
     public static class ExpressionExtensions
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Microsoft.Practices.Prism.Commands;
 
-namespace ChinookMediaManager.Core.DynamicViewModel
+namespace ChinookMediaManager.Prism.Core.DynamicViewModel
 {
     public abstract class CollectionViewModelProxy<VIEWMODEL, MODEL> : ModelProxy<VIEWMODEL, MODEL>, ICollectionViewModel<MODEL>
         where MODEL : class, new()

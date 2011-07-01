@@ -21,9 +21,9 @@ using System.ComponentModel;
 using System.Dynamic;
 using System.Linq.Expressions;
 using System.Reflection;
-using ChinookMediaManager.Core.DynamicViewModel.Extensions;
+using ChinookMediaManager.Prism.Core.DynamicViewModel.Extensions;
 
-namespace ChinookMediaManager.Core.DynamicViewModel
+namespace ChinookMediaManager.Prism.Core.DynamicViewModel
 {
     public abstract class ModelProxy<VIEWMODEL, MODEL> : DynamicObject, INotifyPropertyChanged where MODEL : class, new()
     {

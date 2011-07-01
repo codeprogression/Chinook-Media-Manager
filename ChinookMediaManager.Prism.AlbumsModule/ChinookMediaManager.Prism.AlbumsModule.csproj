@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F8D01FBA-E09C-4F9B-A8CA-2D11C0787E5E}</ProjectGuid>
+    <ProjectGuid>{404332EE-2756-4EE0-B9BF-911F0EE62483}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChinookMediaManager.Core</RootNamespace>
-    <AssemblyName>ChinookMediaManager.Core</AssemblyName>
+    <RootNamespace>ChinookMediaManager.Prism.AlbumsModule</RootNamespace>
+    <AssemblyName>ChinookMediaManager.Prism.AlbumsModule</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -56,12 +56,6 @@
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\packages\NHibernate.Castle.3.1.0.4000\lib\Net35\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMapAdapter">
-      <HintPath>..\packages\CommonServiceLocator.StructureMapAdapter.1.1.0.2\lib\StructureMapAdapter.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -75,26 +69,17 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.1.4.0\lib\40\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DynamicViewModel\CollectionViewModelProxy.cs" />
-    <Compile Include="DynamicViewModel\Extensions\EnumerableExtensions.cs" />
-    <Compile Include="DynamicViewModel\Extensions\ExpressionExtensions.cs" />
-    <Compile Include="DynamicViewModel\Extensions\PropertyInfoExtensions.cs" />
-    <Compile Include="DynamicViewModel\ModelProxy.cs" />
-    <Compile Include="DynamicViewModel\ViewModelBase.cs" />
-    <Compile Include="DynamicViewModel\ViewModelProxy.cs" />
-    <Compile Include="Persistence\DatabaseConstants.cs" />
-    <Compile Include="Persistence\DataBindingFactory.cs" />
-    <Compile Include="Persistence\DataBindingIntercepter.cs" />
-    <Compile Include="Persistence\Entity.cs" />
-    <Compile Include="Persistence\EntityAutoMappingConfiguration.cs" />
-    <Compile Include="Persistence\IAutoPersistenceModelConfiguration.cs" />
-    <Compile Include="Persistence\IFluentMappingConfiguration.cs" />
-    <Compile Include="Persistence\IHbmMappingConfiguration.cs" />
-    <Compile Include="Persistence\IPersistable.cs" />
-    <Compile Include="Persistence\NHibernateConfiguration.cs" />
-    <Compile Include="Persistence\NHibernateRegistry.cs" />
+    <Compile Include="AlbumModule.cs" />
+    <Compile Include="Browse\AlbumsBrowseView.xaml.cs">
+      <DependentUpon>AlbumsBrowseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Browse\AlbumsBrowseViewModel.cs" />
+    <Compile Include="Browse\AlbumViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -108,6 +93,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Toolbar\AlbumToolbarButtonView.xaml.cs">
+      <DependentUpon>AlbumToolbarButtonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Toolbar\AlbumToolbarButtonViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -118,6 +107,39 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Browse\AlbumsBrowseView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Toolbar\AlbumToolbarButtonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChinookMediaManager.Core\ChinookMediaManager.Core.csproj">
+      <Project>{F8D01FBA-E09C-4F9B-A8CA-2D11C0787E5E}</Project>
+      <Name>ChinookMediaManager.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChinookMediaManager.Domain\ChinookMediaManager.Domain.csproj">
+      <Project>{99800444-22CD-40D2-B693-A84E2648B6C9}</Project>
+      <Name>ChinookMediaManager.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChinookMediaManager.Prism.Core\ChinookMediaManager.Prism.Core.csproj">
+      <Project>{8CB3597F-5C7B-4F17-9A59-6590A351E395}</Project>
+      <Name>ChinookMediaManager.Prism.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_Resources\Images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_Resources\Images\albums.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_Resources\Images\error.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

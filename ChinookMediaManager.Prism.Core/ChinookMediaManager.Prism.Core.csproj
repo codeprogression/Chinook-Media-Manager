@@ -5,14 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F8D01FBA-E09C-4F9B-A8CA-2D11C0787E5E}</ProjectGuid>
+    <ProjectGuid>{8CB3597F-5C7B-4F17-9A59-6590A351E395}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChinookMediaManager.Core</RootNamespace>
-    <AssemblyName>ChinookMediaManager.Core</AssemblyName>
+    <RootNamespace>ChinookMediaManager.Prism.Core</RootNamespace>
+    <AssemblyName>ChinookMediaManager.Prism.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -35,32 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\packages\FluentNHibernate.1.2.0.712\lib\FluentNHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>..\packages\Prism.4.0.0.0\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.1.0.4000\lib\Net35\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.ByteCode.Castle">
-      <HintPath>..\packages\NHibernate.Castle.3.1.0.4000\lib\Net35\NHibernate.ByteCode.Castle.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMapAdapter">
-      <HintPath>..\packages\CommonServiceLocator.StructureMapAdapter.1.1.0.2\lib\StructureMapAdapter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -77,24 +52,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DynamicViewModel\CollectionViewModelProxy.cs" />
-    <Compile Include="DynamicViewModel\Extensions\EnumerableExtensions.cs" />
-    <Compile Include="DynamicViewModel\Extensions\ExpressionExtensions.cs" />
-    <Compile Include="DynamicViewModel\Extensions\PropertyInfoExtensions.cs" />
-    <Compile Include="DynamicViewModel\ModelProxy.cs" />
-    <Compile Include="DynamicViewModel\ViewModelBase.cs" />
-    <Compile Include="DynamicViewModel\ViewModelProxy.cs" />
-    <Compile Include="Persistence\DatabaseConstants.cs" />
-    <Compile Include="Persistence\DataBindingFactory.cs" />
-    <Compile Include="Persistence\DataBindingIntercepter.cs" />
-    <Compile Include="Persistence\Entity.cs" />
-    <Compile Include="Persistence\EntityAutoMappingConfiguration.cs" />
-    <Compile Include="Persistence\IAutoPersistenceModelConfiguration.cs" />
-    <Compile Include="Persistence\IFluentMappingConfiguration.cs" />
-    <Compile Include="Persistence\IHbmMappingConfiguration.cs" />
-    <Compile Include="Persistence\IPersistable.cs" />
-    <Compile Include="Persistence\NHibernateConfiguration.cs" />
-    <Compile Include="Persistence\NHibernateRegistry.cs" />
+    <Compile Include="IChinookModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -108,11 +66,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ToolbarRegionAdapter.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,16 +1,19 @@
-﻿Microsoft Visual Studio Solution File, Format Version 11.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinookMediaManager.UI", "ChinookMediaManager\ChinookMediaManager.UI.csproj", "{0074F669-9F9E-414B-9864-2A7C9DCDD993}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinookMediaManager.Core", "ChinookMediaManager.Core\ChinookMediaManager.Core.csproj", "{F8D01FBA-E09C-4F9B-A8CA-2D11C0787E5E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinookMediaManager.Domain", "ChinookMediaManager.Domain\ChinookMediaManager.Domain.csproj", "{99800444-22CD-40D2-B693-A84E2648B6C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinookMediaManager.Module.Albums", "ChinookMediaManager.Module.Albums\ChinookMediaManager.Module.Albums.csproj", "{404332EE-2756-4EE0-B9BF-911F0EE62483}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinookMediaManager.Prism.AlbumsModule", "ChinookMediaManager.Prism.AlbumsModule\ChinookMediaManager.Prism.AlbumsModule.csproj", "{404332EE-2756-4EE0-B9BF-911F0EE62483}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinookMediaManager.Specs", "ChinookMediaManager.Specs\ChinookMediaManager.Specs.csproj", "{3CE2E896-9FD9-40A4-A22C-8A2B5DB97B96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinookMediaManager.Prism.Specs", "ChinookMediaManager.Prism.Specs\ChinookMediaManager.Prism.Specs.csproj", "{3CE2E896-9FD9-40A4-A22C-8A2B5DB97B96}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specs", "Specs", "{785A9D5F-CA65-4A4A-9691-9C0DDCBA30E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinookMediaManager.Prism.UI", "ChinookMediaManager.Prism.UI\ChinookMediaManager.Prism.UI.csproj", "{0074F669-9F9E-414B-9864-2A7C9DCDD993}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinookMediaManager.Prism.Core", "ChinookMediaManager.Prism.Core\ChinookMediaManager.Prism.Core.csproj", "{8CB3597F-5C7B-4F17-9A59-6590A351E395}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,16 +25,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Debug|x86.ActiveCfg = Debug|x86
-		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Debug|x86.Build.0 = Debug|x86
-		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Release|Any CPU.ActiveCfg = Release|x86
-		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Release|Mixed Platforms.Build.0 = Release|x86
-		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Release|x86.ActiveCfg = Release|x86
-		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Release|x86.Build.0 = Release|x86
 		{F8D01FBA-E09C-4F9B-A8CA-2D11C0787E5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F8D01FBA-E09C-4F9B-A8CA-2D11C0787E5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8D01FBA-E09C-4F9B-A8CA-2D11C0787E5E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -72,6 +65,26 @@ Global
 		{3CE2E896-9FD9-40A4-A22C-8A2B5DB97B96}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3CE2E896-9FD9-40A4-A22C-8A2B5DB97B96}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3CE2E896-9FD9-40A4-A22C-8A2B5DB97B96}.Release|x86.ActiveCfg = Release|Any CPU
+		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Debug|x86.ActiveCfg = Debug|x86
+		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Debug|x86.Build.0 = Debug|x86
+		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Release|Any CPU.ActiveCfg = Release|x86
+		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Release|Mixed Platforms.Build.0 = Release|x86
+		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Release|x86.ActiveCfg = Release|x86
+		{0074F669-9F9E-414B-9864-2A7C9DCDD993}.Release|x86.Build.0 = Release|x86
+		{8CB3597F-5C7B-4F17-9A59-6590A351E395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CB3597F-5C7B-4F17-9A59-6590A351E395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CB3597F-5C7B-4F17-9A59-6590A351E395}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8CB3597F-5C7B-4F17-9A59-6590A351E395}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8CB3597F-5C7B-4F17-9A59-6590A351E395}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8CB3597F-5C7B-4F17-9A59-6590A351E395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CB3597F-5C7B-4F17-9A59-6590A351E395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CB3597F-5C7B-4F17-9A59-6590A351E395}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8CB3597F-5C7B-4F17-9A59-6590A351E395}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8CB3597F-5C7B-4F17-9A59-6590A351E395}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,14 +2,14 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F8D01FBA-E09C-4F9B-A8CA-2D11C0787E5E}</ProjectGuid>
-    <OutputType>library</OutputType>
+    <ProjectGuid>{0074F669-9F9E-414B-9864-2A7C9DCDD993}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChinookMediaManager.Core</RootNamespace>
-    <AssemblyName>ChinookMediaManager.Core</AssemblyName>
+    <RootNamespace>ChinookMediaManager.Prism.UI</RootNamespace>
+    <AssemblyName>ChinookMediaManager.Prism.UI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -17,7 +17,8 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -26,7 +27,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,6 +42,9 @@
     </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.2.0.712\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
+      <HintPath>..\packages\NHibernateProfiler.1.0.0.894\lib\Net40\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
@@ -75,26 +80,34 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.1.4.0\lib\40\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DynamicViewModel\CollectionViewModelProxy.cs" />
-    <Compile Include="DynamicViewModel\Extensions\EnumerableExtensions.cs" />
-    <Compile Include="DynamicViewModel\Extensions\ExpressionExtensions.cs" />
-    <Compile Include="DynamicViewModel\Extensions\PropertyInfoExtensions.cs" />
-    <Compile Include="DynamicViewModel\ModelProxy.cs" />
-    <Compile Include="DynamicViewModel\ViewModelBase.cs" />
-    <Compile Include="DynamicViewModel\ViewModelProxy.cs" />
-    <Compile Include="Persistence\DatabaseConstants.cs" />
-    <Compile Include="Persistence\DataBindingFactory.cs" />
-    <Compile Include="Persistence\DataBindingIntercepter.cs" />
-    <Compile Include="Persistence\Entity.cs" />
-    <Compile Include="Persistence\EntityAutoMappingConfiguration.cs" />
-    <Compile Include="Persistence\IAutoPersistenceModelConfiguration.cs" />
-    <Compile Include="Persistence\IFluentMappingConfiguration.cs" />
-    <Compile Include="Persistence\IHbmMappingConfiguration.cs" />
-    <Compile Include="Persistence\IPersistable.cs" />
-    <Compile Include="Persistence\NHibernateConfiguration.cs" />
-    <Compile Include="Persistence\NHibernateRegistry.cs" />
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Bootstrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bootstrap\ModuleRegistry.cs" />
+    <Compile Include="Bootstrap\StructureMapBootstrapper.cs" />
+    <Compile Include="ShellView.xaml.cs">
+      <DependentUpon>ShellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ShellViewModel.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="ShellView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -112,12 +125,27 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChinookMediaManager.Core\ChinookMediaManager.Core.csproj">
+      <Project>{F8D01FBA-E09C-4F9B-A8CA-2D11C0787E5E}</Project>
+      <Name>ChinookMediaManager.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChinookMediaManager.Prism.AlbumsModule\ChinookMediaManager.Prism.AlbumsModule.csproj">
+      <Project>{404332EE-2756-4EE0-B9BF-911F0EE62483}</Project>
+      <Name>ChinookMediaManager.Prism.AlbumsModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChinookMediaManager.Prism.Core\ChinookMediaManager.Prism.Core.csproj">
+      <Project>{8CB3597F-5C7B-4F17-9A59-6590A351E395}</Project>
+      <Name>ChinookMediaManager.Prism.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

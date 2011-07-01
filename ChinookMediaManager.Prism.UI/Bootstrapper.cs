@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using ChinookMediaManager.Core.Persistence;
 using ChinookMediaManager.Prism.UI.Bootstrap;
 using Microsoft.Practices.Prism.Modularity;
+using Microsoft.Practices.Prism.Regions;
 
 namespace ChinookMediaManager.Prism.UI
 {
@@ -10,9 +10,11 @@ namespace ChinookMediaManager.Prism.UI
     {
         protected override DependencyObject CreateShell()
         {
-            var shellView = Container.GetInstance<ShellView>();
-            shellView.Show();
-            return shellView;
+            var shell = Container.GetInstance<ShellView>();
+            var regionManager = Container.GetInstance<RegionManager>();
+            regionManager.RegisterViewWithRegion("ContentRegion", typeof (SplashScreenView));
+            shell.Show();
+            return shell;
         }
 
         protected override IModuleCatalog GetModuleCatalog()

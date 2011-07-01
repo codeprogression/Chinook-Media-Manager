@@ -1,6 +1,6 @@
 ﻿using ChinookMediaManager.Prism.AlbumsModule.Browse;
 using ChinookMediaManager.Prism.AlbumsModule.Toolbar;
-using ChinookMediaManager.Prism.Core;
+using ChinookMediaManager.Prism.Core.Modules;
 using Microsoft.Practices.Prism.Regions;
 
 namespace ChinookMediaManager.Prism.AlbumsModule

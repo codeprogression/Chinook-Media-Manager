@@ -2,11 +2,12 @@ using System.Linq;
 using ChinookMediaManager.Domain.Entities;
 using ChinookMediaManager.Prism.Core.DynamicViewModel;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.Regions;
 using NHibernate;
 
 namespace ChinookMediaManager.Prism.AlbumsModule.Browse
 {
-    public class AlbumsBrowseViewModel : CollectionViewModelProxy<AlbumViewModel,Album>
+    public class AlbumsBrowseViewModel : CollectionViewModelProxy<AlbumViewModel,Album>, INavigationAware
     {
         readonly ISession _session;
         public DelegateCommand<AlbumViewModel> PlayAlbumCommand { get; set; }
@@ -15,7 +16,6 @@ namespace ChinookMediaManager.Prism.AlbumsModule.Browse
         {
             _session = session;
             PlayAlbumCommand = new DelegateCommand<AlbumViewModel>(PlayAlbumExecute, PlayAlbumCanExecute);
-            Load();
         }
 
         protected override void ConfigurePropertyMap()
@@ -41,6 +41,21 @@ namespace ChinookMediaManager.Prism.AlbumsModule.Browse
             album.UpdatePlayed(_session);
             _session.Transaction.Commit();
             _session.BeginTransaction();
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            Load();
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            
         }
     }
 }

@@ -2,9 +2,9 @@
 using System.Windows.Controls;
 using Microsoft.Practices.Prism.Regions;
 
-namespace ChinookMediaManager.Prism.Core
+namespace ChinookMediaManager.Prism.Core.RegionAdapters
 {
-    public class ToolbarRegionAdapter : RegionAdapterBase<System.Windows.Controls.ToolBar>
+    public class ToolbarRegionAdapter : RegionAdapterBase<ToolBar>
     {
         public ToolbarRegionAdapter(IRegionBehaviorFactory regionBehaviorFactory) : base(regionBehaviorFactory)
         {

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using ChinookMediaManager.Domain.Entities;
 using ChinookMediaManager.Prism.AlbumsModule.Browse;
 using Machine.Specifications;
+using Microsoft.Practices.Prism.Events;
 
 namespace ChinookMediaManager.Prism.Specs.AlbumBrowseViewModelSpecs
 {
@@ -12,7 +13,7 @@ namespace ChinookMediaManager.Prism.Specs.AlbumBrowseViewModelSpecs
         Establish context = () =>
             {
                 SpecificationContext.Session.Save(new Album());
-                _viewModel = new AlbumsBrowseViewModel(SpecificationContext.Session);
+                _viewModel = new AlbumsBrowseViewModel(SpecificationContext.Session, new EventAggregator());
                 _albumViewModel = _viewModel.Model[0];
                 _lastPlayed = ((DateTime?)_albumViewModel.Model.LastPlayed).GetValueOrDefault();
                 _albumViewModel.PropertyChanged += (s, e) => { _propertyChanged = e; };

@@ -2,9 +2,9 @@
 
 namespace ChinookMediaManager.Prism.AlbumsModule.Toolbar
 {
-    public partial class AlbumToolbarButtonView : UserControl
+    public partial class OpenAlbumsToolBarButton : UserControl
     {
-        public AlbumToolbarButtonView(AlbumToolbarButtonViewModel viewModel)
+        public OpenAlbumsToolBarButton(AlbumToolbarButtonViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;

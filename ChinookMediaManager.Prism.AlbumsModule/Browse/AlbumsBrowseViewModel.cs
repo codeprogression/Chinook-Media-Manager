@@ -1,7 +1,9 @@
+using System.ComponentModel;
 using System.Linq;
 using ChinookMediaManager.Domain.Entities;
 using ChinookMediaManager.Prism.Core.DynamicViewModel;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
 using NHibernate;
 
@@ -10,14 +12,17 @@ namespace ChinookMediaManager.Prism.AlbumsModule.Browse
     public class AlbumsBrowseViewModel : CollectionViewModelProxy<AlbumViewModel,Album>, INavigationAware
     {
         readonly ISession _session;
+        private readonly IEventAggregator _eventAggregator;
         public DelegateCommand<AlbumViewModel> PlayAlbumCommand { get; set; }
         
-        public AlbumsBrowseViewModel(ISession session)
+        public AlbumsBrowseViewModel(ISession session, IEventAggregator eventAggregator)
         {
             _session = session;
+            _eventAggregator = eventAggregator;
             PlayAlbumCommand = new DelegateCommand<AlbumViewModel>(PlayAlbumExecute, PlayAlbumCanExecute);
+            PropertyChanged += OnSelectedItemChanged; 
         }
-
+        
         protected override void ConfigurePropertyMap()
         {
             
@@ -29,6 +34,12 @@ namespace ChinookMediaManager.Prism.AlbumsModule.Browse
             Model.Clear();
             if (albums.Any())
                 albums.Select(album => new AlbumViewModel(album)).ToList().ForEach(Model.Add);
+        }
+
+        private void OnSelectedItemChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "SelectedItem" && SelectedItem != null)
+                _eventAggregator.GetEvent<AlbumSelectedEvent>().Publish(SelectedItem);
         }
 
         private bool PlayAlbumCanExecute(AlbumViewModel album)
@@ -57,5 +68,8 @@ namespace ChinookMediaManager.Prism.AlbumsModule.Browse
         {
             
         }
+    }
+    public class AlbumSelectedEvent : CompositePresentationEvent<AlbumViewModel>
+    {
     }
 }

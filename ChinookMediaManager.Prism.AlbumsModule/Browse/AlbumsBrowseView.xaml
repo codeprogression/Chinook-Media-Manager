@@ -1,43 +1,61 @@
 ﻿<UserControl x:Class="ChinookMediaManager.Prism.AlbumsModule.Browse.AlbumsBrowseView"
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended" x:Name="uc1">
+             xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             x:Name="uc1"
+             >
+    
     <extToolkit:BusyIndicator IsBusy="{Binding IsBusy}"  BusyContent="Loading Albums">
         <DockPanel>
-            <DataGrid ItemsSource="{Binding Model}" 
+          <DockPanel.Resources>
+                <Style x:Key="ColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" >
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Foreground" Value="CornflowerBlue"/>
+                </Style>
+            </DockPanel.Resources>
+          <DataGrid ItemsSource="{Binding Model}" 
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False" 
                   CanUserDeleteRows="False" 
                   VerticalScrollBarVisibility="Visible" 
                   IsReadOnly="True" 
                   SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+                  AlternatingRowBackground="LightCyan"
+                  GridLinesVisibility="None" 
+                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"  
+                  FontSize="14"
                   >
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Artist">
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate >
+                                <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding DataContext.PlayAlbumCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl}}"  CommandParameter="{Binding}" >
+                                    <Button.Content>
+                                        <Image Source="/_Resources/Images/control_play_blue.png" Width="16" Height="16" ToolTip="Play Album"/>
+                                    </Button.Content>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Title" SortMemberPath="Title">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Title}" Foreground="MidnightBlue" FontWeight="Bold"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Artist" SortMemberPath="Artist.Name">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Artist.Name}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Title">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Title}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="LastPlayed">
+                    <DataGridTemplateColumn Header="LastPlayed" SortMemberPath="LastPlayed">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding LastPlayed}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate >
-                                <Button Content="Play" Command="{Binding DataContext.PlayAlbumCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl}}"  CommandParameter="{Binding}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

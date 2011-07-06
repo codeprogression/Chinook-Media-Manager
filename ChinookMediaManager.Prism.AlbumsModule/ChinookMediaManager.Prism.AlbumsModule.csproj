@@ -93,8 +93,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Toolbar\AlbumToolbarButtonView.xaml.cs">
-      <DependentUpon>AlbumToolbarButtonView.xaml</DependentUpon>
+    <Compile Include="Toolbar\OpenAlbumToolBarButton.xaml.cs">
+      <DependentUpon>OpenAlbumToolBarButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Toolbar\OpenAlbumsToolBarButton.xaml.cs">
+      <DependentUpon>OpenAlbumsToolBarButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Toolbar\AlbumToolbarButtonViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -113,7 +116,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Toolbar\AlbumToolbarButtonView.xaml">
+    <Page Include="Toolbar\OpenAlbumToolBarButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Toolbar\OpenAlbumsToolBarButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,6 +138,30 @@
       <Project>{8CB3597F-5C7B-4F17-9A59-6590A351E395}</Project>
       <Name>ChinookMediaManager.Prism.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_Resources\Images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_Resources\Images\albums.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_Resources\Images\cd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_Resources\Images\chinookarch.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_Resources\Images\control_play_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_Resources\Images\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_Resources\Images\page_white_cd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_Resources\Images\text_list_numbers.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

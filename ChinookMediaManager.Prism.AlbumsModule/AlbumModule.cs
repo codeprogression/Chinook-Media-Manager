@@ -16,7 +16,8 @@ namespace ChinookMediaManager.Prism.AlbumsModule
 
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion("ToolBarRegion", typeof(AlbumToolbarButtonView));
+            _regionManager.RegisterViewWithRegion("ToolBarRegion", typeof(OpenAlbumsToolBarButton));
+            _regionManager.RegisterViewWithRegion("ToolBarRegion", typeof(OpenAlbumToolBarButton));
             _regionManager.RegisterViewWithRegion("ContentRegion", typeof(AlbumsBrowseView));
         }
     }

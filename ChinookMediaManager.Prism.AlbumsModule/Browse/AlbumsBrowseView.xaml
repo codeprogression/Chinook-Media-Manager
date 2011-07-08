@@ -25,6 +25,7 @@
                   GridLinesVisibility="None" 
                   ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"  
                   FontSize="14"
+                   
                   >
                 <DataGrid.Columns>
                     <DataGridTemplateColumn>

@@ -75,6 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlbumModule.cs" />
+    <Compile Include="Browse\AlbumDetails.xaml.cs">
+      <DependentUpon>AlbumDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Browse\AlbumsBrowseView.xaml.cs">
       <DependentUpon>AlbumsBrowseView.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Browse\AlbumDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Browse\AlbumsBrowseView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

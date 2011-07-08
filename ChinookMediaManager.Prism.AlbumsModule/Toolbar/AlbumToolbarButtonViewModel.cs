@@ -26,7 +26,7 @@ namespace ChinookMediaManager.Prism.AlbumsModule.Toolbar
 
         private void OpenAlbumView()
         {
-            MessageBox.Show(string.Format("Opened {0} by {1}", SelectedAlbum.Model.Title, SelectedAlbum.Model.Artist.Name));
+            new AlbumDetails(SelectedAlbum).ShowDialog();
         }
 
         private void OnAlbumSelected(AlbumViewModel album)

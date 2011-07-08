@@ -67,6 +67,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviors\DataGridDoubleClickItemCommandBehavior.cs" />
     <Compile Include="DynamicViewModel\CollectionViewModelProxy.cs" />
     <Compile Include="DynamicViewModel\Extensions\EnumerableExtensions.cs" />
     <Compile Include="DynamicViewModel\Extensions\ExpressionExtensions.cs" />

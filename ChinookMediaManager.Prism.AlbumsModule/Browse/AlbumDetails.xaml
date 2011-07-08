@@ -1,21 +1,22 @@
 ﻿<Window x:Class="ChinookMediaManager.Prism.AlbumsModule.Browse.AlbumDetails"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="AlbumDetails" Height="300" Width="300">
+        Title="AlbumDetails" SizeToContent="WidthAndHeight">
+    
     <StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label>Title: </Label>
-            <TextBox Text="{Binding Title}"/>
+            <Label FontSize="16">Title: </Label>
+            <TextBlock VerticalAlignment="Center" FontSize="16" Text="{Binding Title}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label>Artist: </Label>
-            <TextBox Text="{Binding Artist.Name}"/>
+            <Label FontSize="16">Artist: </Label>
+            <TextBlock VerticalAlignment="Center" FontSize="16" Text="{Binding Artist.Name}"/>
         </StackPanel>
-            <Label>Track List: </Label>
-        <ItemsControl ItemsSource="{Binding Tracks}" >
+        <Label FontSize="16">Track List: </Label>
+        <ItemsControl ItemsSource="{Binding Tracks}" Margin="20,10,10,10" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBox Text="{Binding Name}" />
+                    <TextBlock FontSize="14" FontWeight="Bold" Text="{Binding Name}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

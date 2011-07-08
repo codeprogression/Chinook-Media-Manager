@@ -14,12 +14,14 @@ namespace ChinookMediaManager.Prism.AlbumsModule.Browse
         readonly ISession _session;
         private readonly IEventAggregator _eventAggregator;
         public DelegateCommand<AlbumViewModel> PlayAlbumCommand { get; set; }
+        public DelegateCommand OpenAlbumViewCommand { get; set; }
         
         public AlbumsBrowseViewModel(ISession session, IEventAggregator eventAggregator)
         {
             _session = session;
             _eventAggregator = eventAggregator;
             PlayAlbumCommand = new DelegateCommand<AlbumViewModel>(PlayAlbumExecute, PlayAlbumCanExecute);
+            OpenAlbumViewCommand = new DelegateCommand(OpenAlbumView, CanOpenAlbumView);
             PropertyChanged += OnSelectedItemChanged; 
         }
         
@@ -52,6 +54,16 @@ namespace ChinookMediaManager.Prism.AlbumsModule.Browse
             album.UpdatePlayed(_session);
             _session.Transaction.Commit();
             _session.BeginTransaction();
+        }
+
+        private void OpenAlbumView()
+        {
+            new AlbumDetails(SelectedItem).ShowDialog();
+        }
+
+        private bool CanOpenAlbumView()
+        {
+            return SelectedItem != null;
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)

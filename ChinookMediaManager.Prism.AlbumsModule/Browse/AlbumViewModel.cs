@@ -16,7 +16,7 @@ namespace ChinookMediaManager.Prism.AlbumsModule.Browse
         {
             AddProperty(p => p.Id);
             AddProperty(p => p.Title);
-            AddProperty(p => p.Artist);
+            AddProperty("ArtistName", p => p.Artist.Name);
             AddProperty(p => p.LastPlayed);
             AddProperty(p => p.Tracks);
         }

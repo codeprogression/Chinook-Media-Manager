@@ -2,10 +2,11 @@
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
-             xmlns:Behaviors="clr-namespace:ChinookMediaManager.Prism.Core.Behaviors;assembly=ChinookMediaManager.Prism.Core"
-             x:Name="uc1"
-             >
-    
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ChinookMediaManager.Prism.AlbumsModule.Browse" x:Name="uc1"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:DesignModels="clr-namespace:ChinookMediaManager.Prism.AlbumsModule.Design" mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance DesignModels:AlbumsBrowseViewModel, IsDesignTimeCreatable=True}">
     <extToolkit:BusyIndicator IsBusy="{Binding IsBusy}"  BusyContent="Loading Albums">
         <DockPanel>
           <DockPanel.Resources>
@@ -49,7 +50,7 @@
                     <DataGridTemplateColumn Header="Artist" SortMemberPath="Artist.Name">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Artist.Name}"/>
+                                <TextBlock Text="{Binding ArtistName}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

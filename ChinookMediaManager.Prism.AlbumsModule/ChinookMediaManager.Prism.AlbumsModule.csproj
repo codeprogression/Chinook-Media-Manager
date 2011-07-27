@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlbumModule.cs" />
+    <Compile Include="Design\AlbumViewModel.cs" />
     <Compile Include="Browse\AlbumDetails.xaml.cs">
       <DependentUpon>AlbumDetails.xaml</DependentUpon>
     </Compile>
@@ -83,6 +84,7 @@
     </Compile>
     <Compile Include="Browse\AlbumsBrowseViewModel.cs" />
     <Compile Include="Browse\AlbumViewModel.cs" />
+    <Compile Include="Design\AlbumsBrowseDesignModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
